@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parth Yendhe Portfolio</title>
+  <link rel="shortcut icon" type="x-i" href="logo.png">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d1117;
+    }
+
+    nav {
+      background-color: #0d1117;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-container img {
+      height: 30px;
+      width: auto;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #58a6ff;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #c9d1d9;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #58a6ff;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #c9d1d9;
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #161b22;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 1rem 2rem;
+        gap: 1rem;
+        box-sizing: border-box;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: left;
+      }
+    }
+
+    .home-section {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .home-section::before {
+      content: "";
+      background-image: url('home background.jpeg');
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0.15;
+      z-index: 1;
+    }
+
+    .home-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 1.5rem;
+      margin-top: -250px;
+    }
+
+    .home-content h1 {
+      margin-bottom: 1rem;
+    }
+
+    .home-content p {
+      font-size: 1.2rem;
+      color: #c9d1d9;
+      margin-bottom: 1rem;
+    }
+
+    .typewriter {
+      display: inline-block;
+      overflow: hidden;
+      border-right: 2px solid #58a6ff;
+      white-space: nowrap;
+      animation: typing 2s steps(6, end), blink-caret 0.75s step-end infinite;
+      font-size: 2.5rem;
+      color: #58a6ff;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 6ch }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #58a6ff }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in forwards;
+      animation-delay: 2s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .zoom-in {
+      transform: scale(0);
+      animation: zoomIn 1.5s ease-out forwards;
+      animation-delay: 3.5s;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .resume-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.resume-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+    .about-section {
+  background-color: #000; /* changed to pure black */
+  color: #c9d1d9;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+
+    .about-heading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .about-heading h2 {
+      font-size: 2rem;
+      color: #58a6ff;
+      margin: 0.5rem 0;
+      position: relative;
+    }
+
+    .about-heading .line {
+      width: 330px;
+      height: 2px;
+      background-color: #58a6ff;
+    }
+
+    .about-content {
+      width: 100%;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        padding: 0;
+      }
+    }
+
+    /* Skills Section */
+    .skills-section {
+      background-color: #000; /* changed to pure black */
+      color: #c9d1d9;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .skills-heading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .skills-heading h2 {
+      font-size: 2rem;
+      color: #58a6ff;
+      margin: 0.5rem 0;
+      position: relative;
+    }
+
+    .skills-heading .line {
+      width: 330px;
+      height: 2px;
+      background-color: #58a6ff;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .skill-category {
+      background-color: #0d1117;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(88, 166, 255, 0.1);
+      max-width: 300px;
+      width: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .skill-category:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(88, 166, 255, 0.3);
+    }
+
+    .skill-category h3 {
+      color: #58a6ff;
+      margin-bottom: 1rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .skill-tags span {
+      background-color: #21262d;
+      color: #c9d1d9;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+
+    .skill-tags span:hover {
+      background-color: #58a6ff;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .skills-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .skills-heading .line {
+        width: 100%;
+      }
+    }
+
+/* Contact Section */
+.contact-section {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.contact-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.contact-heading h2 {
+  font-size: 2rem;
+  color: #58a6ff;
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+.contact-heading .line {
+  width: 330px;
+  height: 2px;
+  background-color: #58a6ff;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.contact-info {
+  max-width: 600px;
+}
+
+.contact-info h3 {
+  font-size: 1.5rem;
+  color: #58a6ff;
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+  color: #c9d1d9;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .social-links a {
+    text-decoration: none;
+  }
+
+  .social-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .social-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1f1f1f, #2d2d2d);
+  border: 2px solid #58a6ff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(88, 166, 255, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem;
+  }
+}
+
+
+.contact-form:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px rgba(88, 166, 255, 0.4);
+}
+
+.contact-form label {
+  font-size: 1.1rem;
+  color: #58a6ff;
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  background-color: #121212;
+  border: 2px solid #58a6ff;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #9bcdff;
+  outline: none;
+  box-shadow: 0 0 8px #58a6ff;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.contact-form .submit-btn {
+  background: linear-gradient(135deg, #58a6ff, #3b91d4);
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s;
+}
+
+.contact-form .submit-btn:hover {
+  background: linear-gradient(135deg, #3b91d4, #58a6ff);
+  transform: scale(1.05);
+}
+
+</style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo-container">
+      <img src="logo.png" alt="Parth Yendhe Logo" />
+      <div class="logo-text">Parth Yendhe</div>
+    </div>
+
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#Home">Home</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="#contact">Contact Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="Home" class="home-section">
+    <div class="home-content">
+      <img src="logo.png" alt="Parth Yendhe Logo" style="width: 150px; margin-bottom: 1.5rem;" />
+      <h1><span class="typewriter">Hello!</span></h1>
+      <h2 class="fade-in">Welcome to My Portfolio</h2>
+      <p class="zoom-in">I'm Parth Yendhe — a passionate developer dedicated to crafting meaningful and engaging digital experiences.</p>
+      <a href="Parth_Yendhe_Resume.pdf" download class="resume-btn">Download My Resume</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="about-heading">
+      <div class="line"></div>
+      <h2>About Me</h2>
+      <div class="line"></div>
+    </div>
+    <div class="about-content">
+      <p>
+        Hi, I am Parth Yendhe, a passionate web developer based in Airoli. I have recently completed my B.Sc. in Information Technology and I am currently awaiting for my final results. I am highly enthusiastic about the world of technology and love bringing creative ideas to life through code and design.
+        <br><br>
+        I am currently focused on strengthening my skills in HTML, CSS, GitHub, video editing, game designing, and productivity tools like MS Word, MS Excel, and MS PowerPoint. I am also pursuing Full Stack Web Development and recently enrolled in Android App Development to expand my horizons.
+        <br><br>
+        I am a curious learner who thrives on exploring new technologies and taking on new challenges. Every day is a chance for me to grow and build something impactful.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section">
+    <div class="skills-heading">
+      <div class="line"></div>
+      <h2>Skills</h2>
+      <div class="line"></div>
+    </div>
+    <div class="skills-container">
+      <div class="skill-category">
+        <h3>Web Development</h3>
+        <div class="skill-tags">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>GitHub</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>Tools & Tech</h3>
+        <div class="skill-tags">
+          <span>MS Word</span>
+          <span>MS Excel</span>
+          <span>MS PowerPoint</span>
+          <span>Figma</span>
+          <span>Canva</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>Others</h3>
+        <div class="skill-tags">
+          <span>Video Editing</span>
+          <span>Game Designing</span>
+          <span>Problem Solving</span>
+          <span>Teamwork</span>
+          <span>Communication</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <div class="contact-heading">
+    <div class="line"></div>
+    <h2>Contact Me</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Let's Get in Touch!</h3>
+      <p>If you have any questions or want to collaborate, feel free to reach out to me through the form below or directly via my social media profiles.</p>
+
+      <!-- Social Media Links -->
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/parth-yendhe-99a515360/" target="_blank">
+          <img src="linkedin.png" alt="LinkedIn" class="social-icon"/>
+          <p style="color: #58a6ff;">LinkedIn</p>
+        </a>
+        <a href="https://github.com/Developerparth19" target="_blank">
+          <img src="github.png" alt="GitHub" class="social-icon"/>
+          <p style="color: #58a6ff;">GitHub</p>
+        </a>
+        <a href="mailto:yendheparth16@gmail.com" target="_blank">
+          <img src="gmail.png" alt="Email" class="social-icon"/>
+          <p style="color: #58a6ff;">Gmail</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+<form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+  <!-- Web3Forms Access Key -->
+  <input type="hidden" name="access_key" value="c1a99a13-8dc8-4cbc-84c1-84cf91e4c51d">
+
+  <!-- Honeypot field for spam protection -->
+  <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
+  <!-- Optional Redirect after submission -->
+  <!-- <input type="hidden" name="redirect" value="https://yourwebsite.com/thankyou.html" /> -->
+
+  <label for="name">Your Name</label>
+  <input type="text" id="name" name="name" required placeholder="Enter your name" />
+
+  <label for="email">Your Email</label>
+  <input type="email" id="email" name="email" required placeholder="Enter your email" />
+
+  <label for="message">Your Message</label>
+  <textarea id="message" name="message" required placeholder="Type your message here"></textarea>
+
+  <button type="submit" class="submit-btn">Send Message</button>
+</form>
+
+  </div>
+</section>
+
+
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      const hamburger = document.getElementById('hamburger');
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>
